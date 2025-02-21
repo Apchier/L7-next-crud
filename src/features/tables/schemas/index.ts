@@ -21,3 +21,5 @@ export const createProductFormSchema = z.object({
         .string()
         .optional()
 })
+
+export const updateProductFormSchema = createProductFormSchema.partial()

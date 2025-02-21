@@ -12,12 +12,14 @@ import { useEffect } from "react"
 import { EditCategoryFormInner } from "./EditCategoryFormInner"
 
 type EditCategoryPageProps = {
-    categoryID: string
+    id: string
 }
 
-export const EditCategoryForm = ({ categoryID }: EditCategoryPageProps) => {
+export const EditCategoryForm = ({ id }: EditCategoryPageProps) => {
     const router = useRouter()
-    const { data: category } = useCategories(categoryID)
+    const { data: category } = useCategories(id)
+
+    console.log(id)
 
     const form = useForm<UpdateCategoryFormSchema>({
         defaultValues: {
@@ -28,7 +30,7 @@ export const EditCategoryForm = ({ categoryID }: EditCategoryPageProps) => {
 
     const { mutate: updateCategory } = useUpdateCategories({
         onSuccess: () => {
-            router.push('/dashboard/tables/category')
+            router.push('/dashboard/tables')
             toast.success("Category updated successfully")
         },
         onError: () => {
@@ -36,14 +38,13 @@ export const EditCategoryForm = ({ categoryID }: EditCategoryPageProps) => {
         }
     })
 
-    const onSubmit = (values: UpdateCategoryFormSchema) => updateCategory({ id: categoryID, values })
+    const onSubmit = (values: UpdateCategoryFormSchema) => updateCategory({ id, values })
 
     useEffect(() => {
         if (category) {
             form.reset({ name: category.name })
-            console.log('CategoryID in EditCategoryForm:', categoryID)
         }
-    }, [form, category, categoryID])
+    }, [form, category, id])
 
     return (
         <Form {...form}>

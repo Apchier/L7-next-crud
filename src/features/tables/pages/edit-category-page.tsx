@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { EditCategoryForm } from "../components/form/EditCategoryForm"
 
 type EditCategoryPageProps = {
-    params: Promise<{ categoryID: string }>
+    params: Promise<{ id: string }>
 }
 
 export const EditCategoryPage = async ({params}: EditCategoryPageProps) => {
-    const categoryID = (await params).categoryID
+    const id = (await params).id
 
     return (
         <PageContainer title="Edit Category - Page">
@@ -18,7 +18,7 @@ export const EditCategoryPage = async ({params}: EditCategoryPageProps) => {
                         <p className="text-sm text-gray-500">Stay organized with your daily tasks</p>
                     </CardHeader>
                     <CardContent className="w-full flex items-center justify-center gap-2">
-                        <EditCategoryForm categoryID={categoryID} />
+                        <EditCategoryForm id={id} />
                         <Button id="edit-category-form" form="edit-category-form" type="submit" className="bg-black text-white">
                             Update
                         </Button>

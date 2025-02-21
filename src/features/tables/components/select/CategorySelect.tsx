@@ -65,7 +65,7 @@ export const CategorySelect = <T extends FieldValues>({
                         </FormControl>
                         <SelectContent>
                             {renderElements({
-                                of: category?.data.data,
+                                of: category?.data,
                                 keyExtractor: (categories) => categories.id,
                                 render: (categories) => (
                                     <SelectItem

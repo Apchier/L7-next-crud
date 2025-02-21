@@ -7,7 +7,7 @@ import { axiosInstance } from "@/lib/axios/client"
 
 const deleteCategories = async (id?: string) => {
     const response = await axiosInstance.delete<ApiResponse<Category>>(`/categories/${id}`)
-    return response.data
+    return response.data.data
 }
 
 export const useDeleteCategories = ({onSuccess, onError, onMutate}: ApiProps) => {

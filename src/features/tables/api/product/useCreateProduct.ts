@@ -8,7 +8,7 @@ const createProduct = async (values: CreateProductFormSchema) => {
         "/products",
         values,
     );
-    return response.data;
+    return response.data.data
 };
 
 export const useCreateProduct = ({onSuccess, onError, onMutate}: ApiProps) => {

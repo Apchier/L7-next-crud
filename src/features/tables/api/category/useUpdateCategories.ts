@@ -1,6 +1,6 @@
 import type { ApiProps, ApiResponse } from "@/types/api"
 import { useMutation } from "@tanstack/react-query"
-import type { Product, UpdateCategoryFormSchema } from "../../types/type"
+import type { Category, UpdateCategoryFormSchema } from "../../types/type"
 import { axiosInstance } from "@/lib/axios/client"
 
 const updateCategories = async ({id, values}: {id?: string, values: UpdateCategoryFormSchema}) => {
@@ -9,8 +9,8 @@ const updateCategories = async ({id, values}: {id?: string, values: UpdateCatego
     console.log(`ID: ${id}`)
     console.log(values)
 
-    const response = await axiosInstance.patch<ApiResponse<Product>>(`/categories/${id}`, values)
-    return response.data
+    const response = await axiosInstance.patch<ApiResponse<Category>>(`/categories/${id}`, values)
+    return response.data.data
 }
 
 export const useUpdateCategories = ({ onSuccess, onError, onMutate }: ApiProps<string>) => {

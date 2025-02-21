@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { renderElements } from "@/utils/render-elements"
-import { Eye, Pencil, Trash2 } from "lucide-react"
+import { Eye, Pencil } from "lucide-react"
 import Link from "next/link"
 import { useProducts } from "../../api/product/useProducts"
+import { DeleteProductDialog } from "../dialog/DeleteProductDialog"
 
 export const ProductTableBody = () => {
     const { data: products } = useProducts()
@@ -11,7 +12,7 @@ export const ProductTableBody = () => {
     return (
         <TableBody>
             {renderElements({
-                of: products?.data?.data,
+                of: products?.data,
                 render: (product, index) => (
                     <TableRow key={product.id} className="border-b border-gray-200 hover:bg-gray-50">
                         <TableCell className="py-4 px-4 text-sm text-gray-500">{index + 1}</TableCell>
@@ -29,7 +30,7 @@ export const ProductTableBody = () => {
                                         <Eye className="h-4 w-4" />
                                     </Button>
                                 </Link>
-                                <Link href="#">
+                                <Link href={`/dashboard/tables/product/${product.id}/edit`}>
                                     <Button
                                         variant="outline"
                                         size="icon"
@@ -38,15 +39,7 @@ export const ProductTableBody = () => {
                                         <Pencil className="h-4 w-4" />
                                     </Button>
                                 </Link>
-                                <Link href="#">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="h-8 w-8 text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300"
-                                    >
-                                        <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                </Link>
+                                <DeleteProductDialog productID={`${product.id}`} />
                             </div>
                         </TableCell>
                     </TableRow>

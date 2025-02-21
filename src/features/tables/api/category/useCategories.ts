@@ -11,10 +11,9 @@ const getCategories = async (id?: string) => {
     return response.data.data;
 };
 
-export const useCategories = (id: string) => {
+export const useCategories = (id?: string) => {
     return useQuery({
         queryKey: ["categories", id],
         queryFn: () => getCategories(id),
-        enabled: !!id,
     });
 };

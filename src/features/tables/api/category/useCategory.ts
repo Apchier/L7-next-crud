@@ -5,12 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 
 const getCategory = async () => {
     const response = await axiosInstance.get<ApiResponse<QueryResponse<Category[]>>>('/categories')
-    return response.data
+    return response.data.data
 }
 
 export const useCategory = () => {
     return useQuery({
-        queryKey: ["categories"],
+        queryKey: ["query", "categories"],
         queryFn: getCategory
     })
 }

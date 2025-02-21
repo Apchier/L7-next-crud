@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import type { createCategoryFormSchema, createProductFormSchema, updateCategoryFormSchema } from "../schemas";
+import type { createCategoryFormSchema, createProductFormSchema, updateCategoryFormSchema, updateProductFormSchema } from "../schemas";
 
 export type Product = {
     id?: number,
@@ -24,3 +24,4 @@ export type CreateCategoryFormSchema = z.infer<typeof createCategoryFormSchema>
 export type UpdateCategoryFormSchema = z.infer<typeof updateCategoryFormSchema>
 
 export type CreateProductFormSchema = z.infer<typeof createProductFormSchema>
+export type UpdateProductFormSchema = z.infer<typeof updateProductFormSchema>

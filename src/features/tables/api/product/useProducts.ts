@@ -5,12 +5,12 @@ import { useQuery } from "@tanstack/react-query"
 
 const getProducts = async () => {
     const response = await axiosInstance.get<ApiResponse<QueryResponse<Product[]>>>('/products')
-    return response.data
+    return response.data.data
 }
 
 export const useProducts = () => {
     return useQuery({
-        queryKey: ["product"],
+        queryKey: ["query","product"],
         queryFn: getProducts
     })
 }

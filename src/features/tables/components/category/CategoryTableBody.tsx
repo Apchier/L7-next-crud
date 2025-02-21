@@ -7,16 +7,16 @@ import { Eye, Pencil } from "lucide-react"
 import { DeleteCategoryDialog } from "../dialog/DeleteCategoryDialog"
 
 export const CategoryTableBody = () => {
-    const { data: category } = useCategory()
+    const { data: categories } = useCategory()
 
     return (
         <TableBody>
             {renderElements({
-                of: category?.data?.data,
-                render: (categories, index) => (
-                    <TableRow key={categories.id}>
+                of: categories?.data,
+                render: (category, index) => (
+                    <TableRow key={category.id}>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>{categories.name}</TableCell>
+                        <TableCell>{category.name}</TableCell>
                         <TableCell className="flex justify-center items-center gap-2">
                             <Link href={`#`}>
                                 <Button
@@ -27,7 +27,7 @@ export const CategoryTableBody = () => {
                                     <Eye className="h-4 w-4" />
                                 </Button>
                             </Link>
-                            <Link href={`/dashboard/tables/category/${categories.id}/edit`}>
+                            <Link href={`/dashboard/tables/category/${category.id}/edit`}>
                                 <Button
                                     variant="outline"
                                     size="icon"
@@ -36,7 +36,7 @@ export const CategoryTableBody = () => {
                                     <Pencil className="h-4 w-4" />
                                 </Button>
                             </Link>
-                            <DeleteCategoryDialog categoryID={categories.id} />
+                            <DeleteCategoryDialog categoryID={category.id} />
                         </TableCell>
                     </TableRow>
                 ),
